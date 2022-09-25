@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # == Schema Information
 #
 # Table name: links
@@ -20,6 +22,6 @@ class Link < ApplicationRecord
   validate :url_format
 
   def url_format
-    errors.add(:url, 'Invalid URL') if URI.parse(url.presence || '').host.blank?
+    errors.add(:url, "Invalid URL") if URI.parse(url.presence || "").host.blank?
   end
 end
