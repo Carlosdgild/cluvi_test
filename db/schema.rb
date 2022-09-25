@@ -10,9 +10,19 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_04_27_184447) do
+ActiveRecord::Schema.define(version: 2022_09_25_214257) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "links", force: :cascade do |t|
+    t.string "url", null: false
+    t.string "short_code", limit: 7, null: false
+    t.integer "counter", default: 0, null: false
+    t.integer "alexa_rank", default: 0, null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["short_code"], name: "index_links_on_short_code", unique: true
+  end
 
 end
