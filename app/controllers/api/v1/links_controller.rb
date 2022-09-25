@@ -11,7 +11,21 @@ module Api
       end
 
       def create
-        head
+        data, error = ShortenerService::ShortenUrlService.perform links_params[:url]
+
+        if error
+          render_error_response('An error has occurred', :unprocessable_entity, :invalid_error, data)
+        else
+          render_response(data: data, status_code: :ok, serializer: nil, meta: nil)
+        end
+      end
+
+      private
+
+      def links_params
+        params.permit(:link).permit(
+          :url
+        )
       end
     end
   end
