@@ -5,29 +5,30 @@ module AwsService
   # Fetches Alexa Rank from AWS using UrlInfo action
   #
   class FetchAlexaUrlInfoRankService < ApplicationService
-    attr_reader :url, :rank, :failed
+    attr_reader :url, :rank, :service_error
 
     def initialize(url)
       @url = url
       @rank = nil
-      @failed = true
+      @service_error = nil
     end
 
     def perform
       fetch_rank
 
-      return if failed
+      return [nil, service_error] if service_error
 
       rank
     end
 
     private
 
-    # TODO: Implementar
     def fetch_rank
-      # AlexaApiClient.fetch_rank(url)
-      @failed = false
-      nil
+      @rank, error = AlexaApiClient.fetch_rank(url)
+      if error
+        @service_error = error
+        return
+      end
     end
   end
 end

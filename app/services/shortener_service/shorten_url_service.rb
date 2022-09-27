@@ -24,14 +24,11 @@ module ShortenerService
     private
 
     def shorten_url
-      # TODO: Logica depende de respuesta a la duda
       @link = Link.new(
         url: url,
         short_code: generate_short_code,
         alexa_rank: fetch_alexa_rank
       )
-
-      # return if link already exists # TODO: Logica depende de respuesta a la duda
 
       save_link
     end
@@ -44,7 +41,7 @@ module ShortenerService
     end
 
     def fetch_alexa_rank
-      data, error = AwsService::FetchAlexaUrlInfoRankService.perfom(url)
+      data, error = AwsService::FetchAlexaUrlInfoRankService.perform(url)
       raise StandardError, "An error has occured fetching Alexa rank" if error
 
       data
