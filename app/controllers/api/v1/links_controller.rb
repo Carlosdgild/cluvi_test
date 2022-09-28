@@ -7,7 +7,9 @@ module Api
     #
     class LinksController < ApplicationController
       def show
-        head
+        link = Link.find_by!(short_code: params[:short_code])
+        link.update(counter: link.counter + 1)
+        redirect_to link.url
       end
 
       def create

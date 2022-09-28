@@ -7,7 +7,12 @@ Rails.application.routes.draw do
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
   namespace :api do
     namespace :v1 do
-      resources :links, only: %w[show create]
+      resources :links, only: %w[create] do
+        collection do
+          get '/:short_code'=>'links#show'
+        end
+      end
+
     end
   end
 
