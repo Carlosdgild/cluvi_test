@@ -1,11 +1,11 @@
 # frozen_string_literal: true
 
 FactoryBot.define do
-  sequence(:name) do |n|
-    Sequences::Name.name(n)
+  sequence(:url) do |n|
+    Sequences::Url.url(n)
   end
 
-  sequence(:tag) do |n|
-    Sequences::Tag.tag(n)
+  sequence(:short_code) do |n|
+    Sequences::ShortCode.short_code(n)
   end
 end

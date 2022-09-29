@@ -27,7 +27,7 @@ module AwsService
       @rank, error = AlexaApiClient.fetch_rank(url)
       if error
         @service_error = error
-        return
+        nil
       end
     end
   end

@@ -31,7 +31,7 @@ gem "kaminari", "~> 1.2", ">= 1.2.2"
 gem "rswag-api", "~> 2.4"
 gem "rswag-ui", "~> 2.4"
 
-gem 'rest-client', '~> 2.1'
+gem "rest-client", "~> 2.1"
 
 # Windows does not include zone info files, so bundle the tzinfo-data gem
 

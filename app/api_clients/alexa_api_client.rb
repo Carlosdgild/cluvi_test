@@ -23,22 +23,22 @@ class AlexaApiClient < ApplicationApiClient
 
       @response = get_req(
         "https://awis.api.alexa.com/api?Action=UrlInfo&ResponseGroup=Rank&Output=json&Url=#{url}",
-        { content_type: :json, accept: :json, 'x-api-key' => API_KEY }
+        { content_type: :json, accept: :json, "x-api-key" => API_KEY }
       )
 
       if response.code != 200
         log_message(:error, "Alexa rank for URL '#{url}' could not be fetched")
-        @error = 'Could not fetch Alexa rank'
+        @error = "Could not fetch Alexa rank"
         return
       end
 
       begin
         rank = Integer(
-          json_response.dig(:Awis).dig(:Results).dig(:Result).dig(:Alexa).dig(:TrafficData).dig(:Rank).presence || 0
+          json_response[:Awis][:Results][:Result][:Alexa][:TrafficData][:Rank].presence || 0
         )
       rescue NoMethodError => e
         log_message(:error, "Alexa rank for URL '#{url}' could not be fetched. #{e.message}")
-        @error = 'Could not fetch Alexa rank'
+        @error = "Could not fetch Alexa rank"
         return
       end
 

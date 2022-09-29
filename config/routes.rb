@@ -9,10 +9,9 @@ Rails.application.routes.draw do
     namespace :v1 do
       resources :links, only: %w[create] do
         collection do
-          get '/:short_code'=>'links#show'
+          get "/:short_code" => "links#show"
         end
       end
-
     end
   end
 

@@ -18,5 +18,9 @@
 #
 FactoryBot.define do
   factory :link do
+    url { "http://www.youtube.com" }
+    short_code { generate(:short_code) }
+    counter { 0 }
+    alexa_rank { 0 }
   end
 end

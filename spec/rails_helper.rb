@@ -6,8 +6,6 @@ ENV["SKIP_COVERAGE"] ||= "false"
 unless ENV.fetch("SKIP_COVERAGE", nil) == "true"
   require "simplecov"
 
-  SimpleCov.minimum_coverage_by_file line: 80
-
   SimpleCov.start "rails" do
     add_filter "bin/"
     add_filter "db/"
